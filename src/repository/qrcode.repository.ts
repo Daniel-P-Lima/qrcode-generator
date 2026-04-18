@@ -1,7 +1,7 @@
 import QRCode from "qrcode"
 
 async function createQRCode(url: string, fileName: string) { 
-  const filePath = "./src/public/files/"
+  const filePath = process.env.FILE_PATH;
   
   QRCode.toFile(filePath + fileName, url, {  
     color: {
