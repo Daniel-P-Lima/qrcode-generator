@@ -9,6 +9,10 @@ app.use(express.json());
 app.get("/gen_qrcode", async (req, res) => {
   const url = req.body.url;
   const fileName = req.body.file_name + ".png";
+  if (url.length < 0) { 
+    return res.status(404).json("URL length need to be greater than zero")
+  }
+  
   const createdQRCode = await createQRCode(url, fileName);
   const fullFilePath = createdQRCode.filePath + createdQRCode.fileName;
   
